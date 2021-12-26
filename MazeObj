@@ -1,0 +1,65 @@
+class MazeObj {
+    constructor() {
+        this.aside = 200;
+        this.xCount = 21;
+        this.yCount = 21;
+        this.cells = [];
+        this.checkedCells = [];
+        this.cellX, this.cellY;
+        this.tmpX, this.tmpY;
+        this.dirs = [];
+        this.nextDir;
+        this.inDigLoop;
+        this.startPointTime = 0;
+        this.goalPointTime = null;
+        this.timeGraphic = createGraphics(400, 400);
+				this.timeGraphic.textFont(myFont);
+        this.timeGraphic.pixelDensity(displayDensity());
+        this.timeGraphic.colorMode(HSB);
+    }
+    init() {
+        stageMode = 0;
+        this.dirs = [0, 1, 2, 3];
+        this.inDigLoop = true;
+        this.cells = Array.from(new Array(this.xCount), () => new Array(this.yCount).fill(null));
+        for (let j = 0; j < this.yCount; j++) {
+            for (let i = 0; i < this.xCount; i++) {
+                this.cells[i][j] = new BlockObj(i, j, this.aside);
+            }
+        }
+        this.cellX = floor(random(1, this.xCount - 2));
+        if (this.cellX % 2 == 0) { this.cellX++; }
+        this.cellY = floor(random(1, this.yCount - 2));
+        if (this.cellY % 2 == 0) { this.cellY++; }
+        this.cells[this.cellX][this.cellY].state = false;
+        this.checkedCells.push(new Points(this.cellX, this.cellY));
+    }
+    drawFloor() {
+        push();
+        translate(0, 0, -150);
+        ambientMaterial(0, 0, 90, 1);
+        box(4200, 4200, 100);
+        pop();
+        push();
+        translate(-this.aside * 10, -this.aside * 9, -110);
+        ambientMaterial(240, 70, 100, 1);
+        box(this.aside * .9, this.aside * .9, 50);
+        pop();
+        push();
+        translate(this.aside * 10, this.aside * 9, -110);
+        ambientMaterial(0, 70, 100, 1);
+        box(this.aside * .9, this.aside * .9, 50);
+        pop();
+        if (this.inDigLoop) {
+            push();
+            this.timeGraphic.background(230, 25, 100, 1);
+            this.timeGraphic.textSize(300);
+            this.timeGraphic.fill(0, 0, 100, 1);
+            this.timeGraphic.text(this.checkedCells.length, width / 2 - 190, height / 2 + 20);
+            translate(0, 0, 3550);
+            fill(0, 100, 100, 1);
+            texture(this.timeGraphic);
+            plane(200, 200);
+            pop();
+        }
+    }
