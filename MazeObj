@@ -63,3 +63,49 @@ class MazeObj {
             pop();
         }
     }
+
+ drawWall() {
+        for (let j = 0; j < this.yCount; j++) {
+            for (let i = 0; i < this.xCount; i++) {
+                this.cells[i][j].drawBox(this.aside);
+            }
+        }
+    }
+    digMaze(key) {
+        if (this.dirs.length == 0) {
+            let pickNextIndex = floor(random(0, this.checkedCells.length));
+            let othercheckedCell = this.checkedCells[pickNextIndex];
+            this.checkedCells.splice(pickNextIndex, 1);
+            if (this.checkedCells.length == 0) {
+                this.cells[0][1].state = false;
+                this.cells[this.xCount - 1][this.yCount - 2].state = false;
+                this.inDigLoop = false;
+                key.setOrbs(this);
+                stageMode += 1;
+            }
+            this.cellX = othercheckedCell.x;
+            this.cellY = othercheckedCell.y;
+            this.dirs = [0, 1, 2, 3];
+        }
+        let tmpDirIndex = floor(random(0, this.dirs.length));
+        this.nextDir = this.dirs[tmpDirIndex];
+        this.dirs.splice(tmpDirIndex, 1);
+        switch (this.nextDir) {
+            case 0: this.tmpX = 0; this.tmpY = -2; break;
+            case 1: this.tmpX = 2; this.tmpY = 0; break;
+            case 2: this.tmpX = 0; this.tmpY = 2; break;
+            case 3: this.tmpX = -2; this.tmpY = 0; break;
+            default: break;
+        }
+        let nextX = this.cellX + this.tmpX, nextY = this.cellY + this.tmpY;
+        let betNextX = this.cellX + this.tmpX / 2, betNextY = this.cellY + this.tmpY / 2;
+        if (nextX >= 0 && nextX < this.xCount && nextY >= 0 && nextY < this.yCount) {
+            if (this.cells[nextX][nextY].state == true) {
+                this.cells[nextX][nextY].state = false;
+                this.cells[betNextX][betNextY].state = false;
+                this.checkedCells.push(new Points(this.cellX, this.cellY));
+                this.cellX = nextX; this.cellY = nextY; this.dirs = [0, 1, 2, 3];
+            }
+        }
+    }
+}
