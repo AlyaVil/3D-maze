@@ -1,0 +1,15 @@
+class BlockObj {
+    constructor(i, j, k) {
+        this.state = true;
+        this.x = -2000 + i * k;
+        this.y = -2000 + j * k;
+    }
+    drawBox(aside) {
+        if (this.state) {
+            push();
+            translate(this.x, this.y, 0);
+            ambientMaterial(230, 20, 90, 1);
+            box(aside, aside, aside);
+            pop();
+        }
+    }
