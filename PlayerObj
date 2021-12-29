@@ -52,3 +52,16 @@ class PlayerObj {
                 this.distUp.x = this.upVector.x;
                 this.distUp.y = this.upVector.y;
                 this.distUp.z = this.upVector.z;
+             
+             } else if (stage == 4) {
+this.dist.x = this.pos.x;
+this.dist.y = this.pos.y;
+this.dist.z = this.pos.z;
+this.dir = 0;
+this.distSight.x = cos(this.dir) * 2000 + this.dist.x;
+this.distSight.y = sin(this.dir) * 2000 + this.dist.y;
+this.distSight.z = this.dist.z;
+this.distUp.x = this.upVector.x;
+this.distUp.y = this.upVector.y;
+this.distUp.z = this.upVector.z;
+
