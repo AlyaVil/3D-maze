@@ -76,3 +76,16 @@ this.distUp.z = this.upVector.z;
  this.distUp.y = 1; 
  this.distUp.z = 0; 
  }
+this.prePos = this.pos; 
+            this.preSight = this.sight; 
+            this.preUpVector = this.upVector; 
+        } 
+    } 
+    update(field, key) { 
+        if (this.isEaseMove) { 
+            this.easeMoveTime = (Date.now() - this.easeStartTime) / this.easeMoveLimit; 
+            this.pos.x = this.prePos.x + (this.dist.x - this.prePos.x) * this.easeInOutQuad(this.easeMoveTime); 
+            this.pos.y = this.prePos.y + (this.dist.y - this.prePos.y) * this.easeInOutQuad(this.easeMoveTime); 
+            this.pos.z = this.prePos.z + (this.dist.z - this.prePos.z) * this.easeInOutQuad(this.easeMoveTime); 
+            this.sight.x = this.preSight.x + (this.distSight.x - this.preSight.x) * this.easeInOutQuad(this.easeMoveTime); 
+            this.sight.y = this.preSight.y + (this.distSight.y - this.preSight.y) * this.easeInOutQuad(this.easeMoveTime);
