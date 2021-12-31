@@ -65,3 +65,14 @@ this.distUp.x = this.upVector.x;
 this.distUp.y = this.upVector.y;
 this.distUp.z = this.upVector.z;
 
+} else if (stage == 5) { 
+ this.dist.x = 0; 
+ this.dist.y = 0; 
+ this.dist.z = 4000; 
+ this.distSight.x = 0; 
+ this.distSight.y = 0; 
+ this.distSight.z = 0; 
+ this.distUp.x = 0; 
+ this.distUp.y = 1; 
+ this.distUp.z = 0; 
+ }
