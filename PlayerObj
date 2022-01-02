@@ -89,3 +89,15 @@ this.prePos = this.pos;
             this.pos.z = this.prePos.z + (this.dist.z - this.prePos.z) * this.easeInOutQuad(this.easeMoveTime); 
             this.sight.x = this.preSight.x + (this.distSight.x - this.preSight.x) * this.easeInOutQuad(this.easeMoveTime); 
             this.sight.y = this.preSight.y + (this.distSight.y - this.preSight.y) * this.easeInOutQuad(this.easeMoveTime);
+this.sight.z = this.preSight.z + (this.distSight.z - this.preSight.z) * this.easeInOutQuad(this.easeMoveTime); 
+            this.upVector.x = this.preUpVector.x + (this.distUp.x - this.preUpVector.x) * this.easeInOutQuad(this.easeMoveTime); 
+            this.upVector.y = this.preUpVector.y + (this.distUp.y - this.preUpVector.y) * this.easeInOutQuad(this.easeMoveTime); 
+            this.upVector.z = this.preUpVector.z + (this.distUp.z - this.preUpVector.z) * this.easeInOutQuad(this.easeMoveTime); 
+            if (Date.now() - this.easeStartTime > this.easeMoveLimit) { 
+                this.isEaseMove = false; 
+                stageMode += 1; 
+            } 
+        } 
+        if (this.pos.x < field.cells[0][1].x + field.aside / 3 && key.left.length == 0 && stageMode == 2) { 
+            stageMode += 1; 
+        }
