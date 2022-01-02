@@ -101,3 +101,12 @@ this.sight.z = this.preSight.z + (this.distSight.z - this.preSight.z) * this.eas
         if (this.pos.x < field.cells[0][1].x + field.aside / 3 && key.left.length == 0 && stageMode == 2) { 
             stageMode += 1; 
         }
+if (stageMode == 2) { 
+            push(); 
+            translate(this.pos.x, this.pos.y, -50); 
+            rotateZ(this.dir - HALF_PI); 
+            specularMaterial(240, 70, 100, 1); 
+            cone(20, 100); 
+            pop(); 
+        } 
+    }
