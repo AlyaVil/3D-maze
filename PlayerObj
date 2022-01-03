@@ -110,3 +110,13 @@ if (stageMode == 2) {
             pop(); 
         } 
     }
+getKeyInput(field) { 
+        if (stageMode == 2) { 
+            let tempPosVec = createVector(this.pos.x + field.aside / 2, this.pos.y + field.aside / 2); 
+            let sightVec = p5.Vector.sub(this.sight, this.pos); 
+            sightVec.normalize(); 
+            sightVec.mult(10); 
+            let tempVec; 
+            if (keyIsDown(65)) { 
+                this.dir -= PI / 90; 
+            }
