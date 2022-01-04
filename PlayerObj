@@ -120,3 +120,22 @@ getKeyInput(field) {
             if (keyIsDown(65)) { 
                 this.dir -= PI / 90; 
             }
+if (keyIsDown(87) && cameraIsOrtho == false) { 
+                tempVec = p5.Vector.add(tempPosVec, sightVec); 
+                if (this.collideCheck(tempVec, field)) { 
+                    this.pos.add(sightVec); 
+                } 
+            } 
+            if (keyIsDown(68)) { 
+                this.dir += PI / 90; 
+            } 
+            if (keyIsDown(83) && cameraIsOrtho == false) { 
+                tempVec = p5.Vector.sub(tempPosVec, sightVec); 
+                if (this.collideCheck(tempVec, field)) { 
+                    this.pos.sub(sightVec); 
+                } 
+            } 
+            this.sight.x = cos(this.dir) * 2000 + this.pos.x; 
+            this.sight.y = sin(this.dir) * 2000 + this.pos.y; 
+        } 
+    }
