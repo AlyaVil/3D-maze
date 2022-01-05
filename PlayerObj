@@ -139,3 +139,9 @@ if (keyIsDown(87) && cameraIsOrtho == false) {
             this.sight.y = sin(this.dir) * 2000 + this.pos.y; 
         } 
     }
+collideCheck(tempVec, field) { 
+        let tempX = floor(tempVec.x / field.aside + floor(field.xCount / 2)); 
+        let tempY = floor(tempVec.y / field.aside + floor(field.yCount / 2)); 
+        if (tempVec.x > -field.xCount * field.aside / 2 + field.aside / 2 && tempVec.x < field.xCount * field.aside / 2 + field.aside / 2 
+            && tempVec.y > -field.yCount * field.aside / 2 + field.aside / 2 && tempVec.y < field.yCount * field.aside / 2 + field.aside / 2 
+            && field.cells[tempX][tempY].state == false) {
