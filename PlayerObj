@@ -145,3 +145,9 @@ collideCheck(tempVec, field) {
         if (tempVec.x > -field.xCount * field.aside / 2 + field.aside / 2 && tempVec.x < field.xCount * field.aside / 2 + field.aside / 2 
             && tempVec.y > -field.yCount * field.aside / 2 + field.aside / 2 && tempVec.y < field.yCount * field.aside / 2 + field.aside / 2 
             && field.cells[tempX][tempY].state == false) {
+return true; 
+        } else { 
+            return false; 
+        } 
+    } 
+}
