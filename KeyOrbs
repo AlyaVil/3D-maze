@@ -1,1 +1,31 @@
 
+class KeyOrbs { 
+    constructor() { 
+        this.left = []; 
+        this.orbCount = 3; 
+    } 
+    setOrbs(field) { 
+        this.left = []; 
+        let tmpX, tmpY, checkCount; 
+        let checkCord = []; 
+        let doubleCheck; 
+        while (checkCord.length < this.orbCount) { 
+            tmpX = floor(random(1, field.xCount - 2)); 
+            tmpY = floor(random(1, field.yCount - 2)); 
+            checkCount = 0; 
+            for (let i = 0; i < checkCord.length; i++) { 
+                if (checkCord[i].x == tmpX && checkCord[i].y == tmpY) { 
+                    checkCount++; 
+                } 
+            } 
+            if (checkCount == 0) { 
+                doubleCheck = true; 
+            } else { 
+                doubleCheck = false; 
+            } 
+            if (!field.cells[tmpX][tmpY].state && doubleCheck) { 
+                checkCord.push(new Points(tmpX, tmpY)); 
+                this.left.push(field.cells[tmpX][tmpY]); 
+            } 
+        } 
+    }
