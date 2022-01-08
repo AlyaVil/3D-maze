@@ -29,3 +29,21 @@ class KeyOrbs {
             } 
         } 
     }
+drawOrbs() { 
+        this.left.forEach(thisOrb => { 
+            push(); 
+            translate(thisOrb.x, thisOrb.y, -20); 
+            rotateZ(frameCount / 100); 
+            specularMaterial(90, 100, 95, .6); 
+            box(80, 80, 80); 
+            pop(); 
+        }); 
+    } 
+    checkOrbs(mover) { 
+        for (let i = 0; i < this.left.length; i++) { 
+            if (dist(this.left[i].x, this.left[i].y, mover.pos.x, mover.pos.y) < 30) { 
+                this.left.splice(i, 1); 
+            } 
+        } 
+    } 
+}
