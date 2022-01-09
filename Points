@@ -1,1 +1,12 @@
 
+class Points { 
+    constructor(i, j) { 
+        this.x = i; 
+        this.y = j; 
+    } 
+} 
+function keyPressed() { 
+    if (stageMode == 2 && keyCode == 32) { 
+        cameraIsOrtho = !cameraIsOrtho; 
+    } 
+}
